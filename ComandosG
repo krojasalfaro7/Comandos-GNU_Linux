@@ -896,3 +896,10 @@ nano /etc/hostname
 
 =============================================================================================================================================================
 
+						Cambiar de directorio home
+
+usermod -d "directorio" -m usuario
+
+Ejemplo:
+
+usermod -d /home/kevin/ -m kevin
