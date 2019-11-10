@@ -879,4 +879,17 @@ Esperamos les resulte interesante y útil!
 A futuro ampliaremos esta información con otros parámetros que pueden ser de interés para iniciar y detener servicios residentes del segundo plano.
 
 
-============================================================================================================
+=============================================================================================================================================================
+						Cambiar nombre de la maquina
+
+Como superusuario(root):
+
+hostname nuevonombre
+
+nano /etc/hosts/ 
+
+Aquí modificar el viejo nombre con el nuevo. Guardar, salir y reiniciar la shell.
+
+=============================================================================================================================================================
+
+
