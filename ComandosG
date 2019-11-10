@@ -890,5 +890,9 @@ nano /etc/hosts/
 
 Aquí modificar el viejo nombre con el nuevo. Guardar, salir y reiniciar la shell.
 
+Hacer lo mismo en:
+
+nano /etc/hostname
+
 =============================================================================================================================================================
 
