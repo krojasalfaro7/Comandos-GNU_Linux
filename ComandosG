@@ -880,6 +880,7 @@ A futuro ampliaremos esta información con otros parámetros que pueden ser de i
 
 
 =============================================================================================================================================================
+
 								Cambiar nombre de la maquina
 
 Como superusuario(root):
@@ -905,6 +906,7 @@ Ejemplo:
 usermod -d /home/kevin/ -m kevin
 
 ==================================================================================================================================================================
+
 						Pasos para enjaular a un usuario en un directorio utilizando chroot
 
 Crear el usuario 
