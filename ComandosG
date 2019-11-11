@@ -880,7 +880,7 @@ A futuro ampliaremos esta información con otros parámetros que pueden ser de i
 
 
 =============================================================================================================================================================
-						Cambiar nombre de la maquina
+								Cambiar nombre de la maquina
 
 Como superusuario(root):
 
@@ -896,7 +896,7 @@ nano /etc/hostname
 
 =============================================================================================================================================================
 
-						Cambiar de directorio home
+								Cambiar de directorio home
 
 usermod -d "directorio" -m usuario
 
@@ -904,3 +904,164 @@ Ejemplo:
 
 usermod -d /home/kevin/ -m kevin
 
+==================================================================================================================================================================
+						Pasos para enjaular a un usuario en un directorio utilizando chroot
+
+Crear el usuario 
+
+adduser backups
+passwd backups
+
+Crear una shell -> /bin/backups:
+
+nano /bin/backups
+
+#!/bin/bash
+/usr/bin/sudo /usr/sbin/chroot /home/admin/backups_db /bin/bash
+
+Dar permisos de ejecución a la nueva shell:
+
+chmod +x /bin/backups
+
+Agregar shell a /etc/shells:
+
+echo '/bin/backups' >> /etc/shells
+
+Crear directorios para ejecución de la shell:
+
+mkdir bin
+mkdir usr
+mkdir usr/bin
+mkdir lib
+
+Ver que biblioteca usa /bin/bash:
+
+ldd /bin/bash
+
+Luego copiarlas al directorio lib creado anteriormente
+
+cp biblioteca lib
+...
+
+ejemplo:
+
+root@ip-172-26-13-244:/home/admin/backups_db# ldd /bin/bash
+	linux-vdso.so.1 (0x00007ffca59c2000)
+	libtinfo.so.5 => /lib/x86_64-linux-gnu/libtinfo.so.5 (0x00007f503a9a5000)
+	libdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f503a7a1000)
+	libc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f503a402000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f503abcf000)
+root@ip-172-26-13-244:/home/admin/backups_db# cp /lib/x86_64-linux-gnu/libtinfo.so.5 lib
+root@ip-172-26-13-244:/home/admin/backups_db# cp /lib/x86_64-linux-gnu/libdl.so.2 lib
+root@ip-172-26-13-244:/home/admin/backups_db# cp /lib/x86_64-linux-gnu/libc.so.6 lib
+root@ip-172-26-13-244:/home/admin/backups_db# cp /lib64/ld-linux-x86-64.so.2 lib
+
+
+Luego copiar /bin/bash:
+
+cp /bin/bash /bin
+
+Ver las bibliotecas de /bin/ls 
+
+ldd /bin/ls
+
+Y copiarlas
+
+cp /bin/ls bin && cp /bin/cp bin
+
+Establecer la shell del usuario
+
+usermod -s /bin/backups backups
+
+Indicarle a sudo que el usuario "backups" va a ejecutar la orden chroot:
+
+visudo
+
+agregar despues de la linea 
+# User privilege specification
+root ALL=(ALL) ALL
+
+la siguiente linea
+
+backups ALL=/usr/sbin/chroot
+
+Asignarle los permisos de ese usuario a al directorio donde ejecutara su shell
+
+chown -R backups /home/admin/backups_db
+
+Loguear al usuario con el siguiente comando:
+
+sudo su backups
+
+Si se tiene un sistema de 64bits y da el siguiente error:
+
+/usr/sbin/chroot: failed to run command ‘/bin/bash’: No such file or directory
+
+utilizar los siguientes comandos:
+
+cp -a /usr /home/admin/backups_db
+cp -a /lib /home/admin/backups_db
+cp -a /lib64 /home/admin/backups_db
+
+cp -r /lib64 lib64 
+cp -a /usr usr
+cp -a /lib lib
+cp -a /lib64 lib64
+
+=============================================================================================================================================================================
+
+				Pasos para crear un par de llaves publicas y privadas para la conexion SSH de un cliente amazon web service AWS
+ 
+establecer el directorio del usuario si no lo tiene por defecto:
+
+usermod -d /ruta/ -m usuario
+
+Ejemplo:
+
+usermod -d /home/admin/backups_db -m backups
+
+Crear la carpeta .ssh en la raiz del directorio del usuario
+
+mkdir .ssh
+
+Ejemplo:
+
+mkdir /home/admin/backups_db/.ssh
+
+Crear la llave publica y privada con el siguiente comando:
+
+ssh-keygen -t rsa -b 4096 -C "krojas@skyflot.com"
+
+Copiar la llave publica .pub dentro de authorized_keys. Ejemplo:
+
+cat /home/admin/backups_db/.ssh/id_rsa.pub >> authorized_keys
+
+Copiar la llave privada y guardarla para su posterior uso
+
+SI SE VA A USAR PUTTY
+
+apt-get install putty-tools
+
+puttygen -t rsa -C "my home key" -o mykey.ppk
+
+============================================================================================================================================================================
+
+								Agregar un usuario a un grupo
+
+usermod -a -G grupo usuario
+
+Ejemplo:
+
+usermod -a -G root kevin
+
+===========================================================================================================================================================================
+
+								Ver en que grupo está un usuario
+
+groups usuario
+
+Ejemplo:
+
+groups kevin
+
+==========================================================================================================================================================================
