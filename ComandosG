@@ -1067,3 +1067,14 @@ Ejemplo:
 groups kevin
 
 ==========================================================================================================================================================================
+
+					(MEJORAR)Para clonar un repositorio de github(git) a partir del link html, ejemplo:
+
+git clone https://github.com/krojasalfaro7/Recursive-Factorial.git 
+
+Con esto se crea una carpeta con el nombre de Recursive-Factorial y dentro los
+ficheros.
+
+Proxima mejora, cuando es por conexion ssh a traves de una key
+
+=========================================================================================================================================================================
