@@ -903,3 +903,7 @@ usermod -d "directorio" -m usuario
 Ejemplo:
 
 usermod -d /home/kevin/ -m kevin
+
+
+
+Será que cambia????????????''
