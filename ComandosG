@@ -1078,3 +1078,16 @@ ficheros.
 Proxima mejora, cuando es por conexion ssh a traves de una key
 
 =========================================================================================================================================================================
+						Cambiar de Ramas en Git
+
+Listar que ramas existen en el directorio:
+
+git branch
+
+Incorporar una rama existente que no está en la lista:
+
+git branch "nombre de la rama"
+
+Cambiar de rama:
+
+git checkout "Nombre de la rama"
