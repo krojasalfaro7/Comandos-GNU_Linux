@@ -1091,3 +1091,14 @@ git branch "nombre de la rama"
 Cambiar de rama:
 
 git checkout "Nombre de la rama"
+=============================================================================================================================================================================
+						Ver diferencias entre dos ramas Git
+
+git diff --stat "rama1" "rama2"
+
+Ejemplo:
+
+git diff --stat master ultimate
+
+
+
