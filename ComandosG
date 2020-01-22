@@ -1100,4 +1100,31 @@ Ejemplo:
 
 git diff --stat master ultimate
 
+=======================================================================================================================================================
+						Comando grep(Mejorar)
+
+Invertir el significado de la busqueda
+
+grep -v regexp ficheros		ó	cat fichero | grep -v regex
+
+Mostrar número de linea de la coincidencia 
+
+grep -n regexp ficheros
+
+======================================================================================================================================================
+				Mostrar una cantidad de números de lineas de un fichero
+
+head fichero -nVALOR
+
+Donde valor es un entero.
+
+Ejemplo:
+
+head texto.txt -n10
+
+
+
+
+
+
 
