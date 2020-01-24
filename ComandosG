@@ -1122,6 +1122,21 @@ Ejemplo:
 
 head texto.txt -n10
 
+=======================================================================================================================================================
+							lbslk
+
+Comando para ver los puntos de montaje de las particiones que tiene el discoduro o otra unidad externa actualmente en el sistema operativo.
+Util para verificar si está montado o demontado la partición.
+
+lsblk
+
+=====================================================================================================================================================
+						Comando dd con progreso
+
+dd if=/dev/sdX | pv | dd of=/dev/sdY bs=4M conv=fdatasync
+
+
+
 
 
 
