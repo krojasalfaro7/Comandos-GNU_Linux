@@ -1135,7 +1135,20 @@ lsblk
 
 dd if=/dev/sdX | pv | dd of=/dev/sdY bs=4M conv=fdatasync
 
+=====================================================================================================================================================
+					Borrar contraseña de Windows desde Linux con chntpw
 
+El comando a utilizar es: chntpw
+
+Montar la partición de Windws y luego ejecutar el siguiente comando:
+
+chntpw  -i  /directorio_de_montaje/Windows/System32/config/SAM
+
+Ejemplo:
+
+chntpw  -i  /media/Windows/System32/config/SAM
+
+Dentro, se inicializará una shell interactiva que permite cambiar varios atributos de los usuarios dentro del SO
 
 
 
