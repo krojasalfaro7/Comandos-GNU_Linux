@@ -1150,9 +1150,8 @@ chntpw  -i  /media/Windows/System32/config/SAM
 
 Dentro, se inicializará una shell interactiva que permite cambiar varios atributos de los usuarios dentro del SO
 
+=====================================================================================================================================================
+					Establecer nombres de dominios locales					
 
-
-
-
-
+nano /etc/hosts
 

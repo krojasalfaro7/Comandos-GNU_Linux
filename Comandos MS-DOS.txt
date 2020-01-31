@@ -37,6 +37,11 @@ atributos caracteristicas
 • H atributo de archivo oculto
 • S atributo de archivo del sistema
 
+
+Establecer nombres de dominios de forma local.
+
+C:\windows\system32\drivers\etc\hosts
+
 __________________________________________
 Comandos basicos de hacking (curso Basico)
 __________________________________________
