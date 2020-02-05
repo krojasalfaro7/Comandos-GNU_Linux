@@ -1136,6 +1136,21 @@ lsblk
 dd if=/dev/sdX | pv | dd of=/dev/sdY bs=4M conv=fdatasync
 
 =====================================================================================================================================================
+					Bootear Pendrive USB con comando dd con progreso
+
+Desmontar la partición que se va a bootear con
+
+umount /dev/sdX
+
+Luego, verificar que realmente la partición no esté montada
+
+lsblk
+
+Finalmente, copiar el .iso en la partición del Pendrive USB
+
+sudo dd if=archivo.iso | pv | sudo dd of=/dev/sdX bs=4M conv=fdatasync 
+
+=====================================================================================================================================================
 					Borrar contraseña de Windows desde Linux con chntpw
 
 El comando a utilizar es: chntpw
@@ -1154,4 +1169,15 @@ Dentro, se inicializará una shell interactiva que permite cambiar varios atribu
 					Establecer nombres de dominios locales					
 
 nano /etc/hosts
+
+Una vez dentro, se establece el nombre de dominio que corresponde a una IP local de la subred
+
+=====================================================================================================================================================
+					Mostrar log en tiempo real
+
+tail -f log
+
+Ejemplo:
+
+tail -f /var/log/apache2/error.log
 
