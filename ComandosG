@@ -1153,3 +1153,66 @@ uname -r
 uname -a	 
 
 ================================================================================================================
+			Configurar varias versiones de java, javac, jar, jshell
+
+-En primer lugar se debe descargar e intalar java(jdk_versión deseada, por ejemplo jdk11) comunmente en la ruta
+/usr/lib/jvm/
+
+-Se puede tomar como ejemplo de instalación los siguientes pasos:
+
+wget https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz
+chmod +x openjdk-11+28_linux-x64_bin.tar.gz
+mkdir /usr/lib/jvm/open-jdk-11
+tar -xzf ./openjdk-11+28_linux-x64_bin.tar.gz -C /usr/lib/jvm/open-jdk-11 --strip-components=1
+
+-Listar las alternativas de java, javac, jar, jshell instaladas en el SO respectivamente:
+
+update-alternatives --list java
+update-alternatives --list javac
+update-alternatives --list jar
+update-alternatives --list jshell
+
+-Mostar las alternativas instaladas con una descripción más completa de java, javac, jar, jshell:
+
+update-alternatives --display java
+update-alternatives --display javac
+update-alternatives --display jar
+update-alternatives --display jshell
+
+-Actualizar las alternativas a java, javac, jar y jshell respectivamente:
+
+sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/open-jdk-11/bin/java 1
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/open-jdk-11/bin/javac 1
+sudo update-alternatives --install /usr/bin/jar jar /usr/lib/jvm/open-jdk-11/bin/jar 1
+sudo update-alternatives --install /usr/bin/jshell jshell /usr/lib/jvm/open-jdk-11/bin/jshell 1
+
+-Establecer la versión de java, javac, jar y jshell a usar respectivamente:
+
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+sudo update-alternatives --config jar
+sudo update-alternatives --config jshell
+
+Elegir el número deseado a establecer respectivamente (Por ejemplo: para java /usr/lib/jvm/open-jdk-11/bin/java)
+
+-Finalmente configurar la variable JAVA_HOME:
+
+sudo nano /etc/environment
+
+-Establecer el directorio donde se encuentra el java deseado al valor de JAVA_HOME, en este caso "/usr/lib/jvm/open-jdk-11/bin/" cabe destacar que se toma la ruta absoluta en sin el java, ya que se deben utilizar los demas recursos. Por ejemplo:
+
+JAVA_HOME=/usr/lib/jvm/open-jdk-11/bin
+
+-Cargar los cambios de /etc/environment de la sesión actual:
+
+source /etc/environment
+
+Fuente: https://dev.to/thegroo/install-and-manage-multiple-java-versions-on-linux-using-alternatives-5e93
+=================================================================================================================
+
+ 
+
+
+
+
+
