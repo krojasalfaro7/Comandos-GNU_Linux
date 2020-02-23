@@ -1209,8 +1209,25 @@ source /etc/environment
 
 Fuente: https://dev.to/thegroo/install-and-manage-multiple-java-versions-on-linux-using-alternatives-5e93
 =================================================================================================================
-
+			Comparar dos ficheros con diff, colordiff y sdiff
  
+-Primer caso con sdiff
+
+sdiff texto1 texto2 | grep \| -n
+
+-Este caso imprime los dos ficheros uno al lado del otro y los que son diferentes le agrega un '|' entre los dos. Además se le pasa como argumento la salida como entrada a grep para encontrar '|' y sólo imprime los diferentes con su número de linea correspondiente (argumento -n de grep)
+
+-Segundo caso con diff
+
+diff texto1 texto2
+
+-Este caso imprime las lineas que son diferentes con su respectivo número de linea. La diferencia con el comando anterior es que es coloca las lineas diferentes una debajo de la otra.
+
+-Tercer caso colordiff
+
+colordiff texto1 texto2
+
+-Hace exactamente lo mismo que el anterior pero con la diferencia de que resalta las lineas de cada fichero diferente en un color en particular
 
 
 
