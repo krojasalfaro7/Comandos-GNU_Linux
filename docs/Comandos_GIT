@@ -1,0 +1,54 @@
+==================================================================================================
+	(MEJORAR)Para clonar un repositorio de github(git) a partir del link html, ejemplo:
+
+git clone https://github.com/krojasalfaro7/Recursive-Factorial.git 
+
+Con esto se crea una carpeta con el nombre de Recursive-Factorial y dentro los
+ficheros.
+
+Proxima mejora, cuando es por conexion ssh a traves de una key
+
+===================================================================================================
+				Cambiar de Ramas en Git
+
+Listar que ramas existen en el directorio:
+
+git branch
+
+Incorporar una rama existente que no está en la lista:
+
+git branch "nombre de la rama"
+
+Cambiar de rama:
+
+git checkout "Nombre de la rama"
+===================================================================================================
+			Ver diferencias entre dos ramas Git
+
+git diff --stat "rama1" "rama2"
+
+Ejemplo:
+
+git diff --stat master ultimate
+
+===================================================================================================
+	Crear .gitignore para ignorar los archivos que no se desean para un push/pull
+
+nano .gitignore
+
+-Colocar los archivos a ignorar o un regex para varios con un patron. ejemplo:
+
+.~*
+
+-Esta notación ignorará todo archivo que empiece por .~ y termine en cualquier otra expresión
+
+git add .gitignore
+git commit -m "Comentario"
+git push origin rama
+
+===================================================================================================
+			Mostrar archivos ignorados dentro de .gitignore:
+
+git status --ignored
+
+==================================================================================================
