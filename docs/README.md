@@ -1,1 +1,0 @@
-# Comandos-GNU_Linux
