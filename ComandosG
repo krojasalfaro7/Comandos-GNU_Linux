@@ -1229,6 +1229,28 @@ colordiff texto1 texto2
 
 -Hace exactamente lo mismo que el anterior pero con la diferencia de que resalta las lineas de cada fichero diferente en un color en particular
 
+=================================================================================================================
+			Crear Alias para conexiones via protocolo SSH
+
+-Para crear alias para resimur las conexiones del protocolo ssh se debe configurar el archivo ~/.ssh/config y editar o agregar los siguientes campos:
+
+____________________________
+Host alias
+Hostname direccion_IP
+User usuario_ssh
+IdentityFile llave_privada
+Port numero_puerto
+____________________________
+
+Ejemplo:
+
+Host interfaces
+Hostname 35.170.67.35
+User admin
+IdentityFile /home/kevin/SKYFLOT/Servidores/interfaces_skyflot.cloud/GestionServidor_Interfas.pem
+Port 22
+
+
 
 
 
