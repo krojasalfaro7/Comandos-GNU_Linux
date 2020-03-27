@@ -1250,6 +1250,47 @@ User admin
 IdentityFile /home/kevin/SKYFLOT/Servidores/interfaces_skyflot.cloud/GestionServidor_Interfas.pem
 Port 22
 
+===========================================================================================================================================
+		Crear una conexión sin contraseña via SSH
+
+-Este caso se usa cuando el usuario del sistema operartivo al que se desea realizar la conexión pide una clave para su ingreso(Casi siempre es la clave del usuario). El procedimiento es el siguiente:
+
+-Crear un par de claves pública-privada en el equipo destino con el siguiente comando:
+
+-NOTA: cuando le pida el 'passphrase' dejarlo vacio
+
+ssh-keygen -t rsa -b 4096
+
+-Luego asignar el id de la llave pública del usuario a esa llave (MEJORAR LOS TERMINOS DE LA EXPLICACION) con el siguiente comando:
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub remote-host
+-Ejemplo:
+ssh-copy-id -i ~/.ssh/id_rsa.pub admin@192.168.1.2 (Preferiblemente la IP Pública si se accede afuera de la red local)
+===============================================================================================================
+				Borrar logs de Systemd Journal Logs
+
+-Estos se encuentran en /var/log/journal. Primero verificar cuanto espacio está usando los logs
+
+journalctl --disk-usage
+
+-Luego borrar los logs con los siguientes comandos:
+
+journalctl --rotate
+journalctl --vacuum-time=1s
+
+-rotate: El demonio borra todos los archivos actualmente activos.
+-vacuum-time=1s: Se eliminan todos los archivos guardados en el registro con una antigüedad de más de un segundo. También se admiten otros tiempos, por ejemplo: 2m (dos minutos), 5h (cinco horas), 3weeks (tres semanas), 5months (cinco meses).
+
+==============================================================================================================
+
+
+
+
+
+
+
+
+
 
 
 
