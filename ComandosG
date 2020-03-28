@@ -7,6 +7,12 @@ particular. Por ejemplo: ls /home
 -ls -d = Listar los directorios en vez de dentro de ellos.
 -cd = cambiar de directorio, cd .. = retroceder un directorio
 -cp = copiar archivos.
+-cp -r = copia archivos de forma recursiva.
+-cp -u = copia de forma incremental.
+
+Funcionalidad de "cp -u" para copiar de forma incremental, util cuando se quiere copiar archivos mas recientes a un destino con el archivo mas antiguo o que no existe. Es decir, lo copia solo si no existe o es mas antiguo.
+Además, se puede combinar con los argumentos "cp -u -v -r" que copiaría de forma recursiva incremental y mostraria los detalles de las copias  
+
 -dir = parecido a ls.
 -mkdir = crea una carpeta
 -mv = mover archivos y carpetas, ejemplo = mv archivo /home/kevinc-debian/Documentos/
@@ -1283,15 +1289,63 @@ journalctl --vacuum-time=1s
 
 ==============================================================================================================
 
+		Crear una carpeta compartida con NFS
+
+-PARTE DEL SERVIDOR:
+
+apt-get install nfs-kernel-server
+mkdir -p /nfs/compartido
+chown chown nobody:nogroup /nfs/compartido
+chmod 777 /nfs/compartido
+
+-Luego establecer los parametros para compartir
+
+nano /etc/exports
+
+-Para un cliente en particular: 
+
+/nfs/compartido        192.168.1.X(rw,sync,no_subtree_check)
+
+-Para toda la red;
+
+/nfs/compartido 192.168.1.0/24(rw,sync,no_subtree_check)
+
+-Donde:
+
+    ro: permiso de solo lectura del directorio
+    rw: permiso de lectura y escritura del directorio
+    subtree_check: especifica la verificación de subdirectorios
+    no_subtree_check: previene verificación de subdirectorios
+    sync: Escribe todos los cambios en el disco antes de aplicarlo
+    Async: ignora la verificación de sincronización para mejorar la velocidad
 
 
+-Luego reiniciar el servicio
 
+systemctl restart nfs-kernel-server
 
+-EXTRA permitir en el firewall:
 
+-Para un cliente:
+ufw allow from 192.168.1.14 to any port nfs
+-Para toda la red
+ufw allow from 192.168.1.0/24 to any port nfs
 
+-PARTE DEL CLIENTE:
 
+-Instalar y crear el directorio donde se montará la carpeta compartida
 
+apt-get install nfs-common
+mkdir –p /nfs/backups/
 
+-Luego montar la carpeta 
+mount 192.168.1.10:/nfs/compartido /nfs/backups
+
+-Montar de manera permanente el directorio compartido. Editar el fichero /etc/fstab:
+nano /etc/fstab
+
+-Escribir:
+172.17.0.18:/nfs/compartido       /nfs/backups      nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
 
 
 
