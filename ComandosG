@@ -1,4 +1,4 @@
-Comandos básicos de bash:
+Comandos básicos de BASH:
 
 -ls = Lista el contenido de un directorio actual de trabajo. También se puede especificar un directorio en 
 particular. Por ejemplo: ls /home
@@ -1347,6 +1347,43 @@ nano /etc/fstab
 -Escribir:
 172.17.0.18:/nfs/compartido       /nfs/backups      nfs auto,nofail,noatime,nolock,intr,tcp,actimeo=1800 0 0
 
+=========================================================================================================================================
+			Comando sed (Para reemplazar una cadena de texto dentro de un archivo)
 
+-Sintaxis:
+
+sed -i 's/texto_original/texto_a_remplazark/g' "archivo"
+
+-Ejemplo:
+
+sed -i 's/hola/hi/g' "pasar_hola_a_hi.txt"
+
+			Comando sed (Para mostrar un rango de lineas de un archivo)
+
+-Sintaxis:
+
+sed -n INICIO,FINp archivo
+
+-Ejemplo:
+
+sed -n 2,7p arhivo
+
+-Donde es "n" hace que no se vulque el archivo en la salida estandar, "p" hace que se imprima lo que se extrae, "2,7" es el rango el cual se quiere extraer.
+
+===================================================================================================================================================
+		Comando xargs (Construye argumentos a traves de una tuberia o una redirección)
+
+-Ejemplo, eliminando una serie de archivos que terminan en '.borrar' de un directorio con el comando rm y pasandole los argumentos de entrada de la salidad que da ls y grep, y construyendolo con xargs:
+
+ls | grep *.borrar$ | xargs rm
+
+-Con ls se listan todos los archivos no ocultos del directorio, con grep se filtran e imprime solo los archivos que terminen .borrar y con xargs se pasa ese resultado a rm.
+
+OJO cabe aclarar que se intento sin el xargs pero no funciona.
+
+=====================================================================================================================================================  
+──────────────────
+ddsdds que lacreo este menor ────
+──────────────────
 
 
