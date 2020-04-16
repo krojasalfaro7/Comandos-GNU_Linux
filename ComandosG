@@ -75,18 +75,33 @@ Herramientas de administracon de software APT:
 apt-get install, remove, purge, upgrade, update, dist-upgrade, apt-cache search
 
 ================================================================================
-Comprimir archivos
+			Comprimir y Descomprimir archivos
 
-rar a nombre.rar ficheros
+Archivos .tar.gz:
+Comprimir: tar -zcvf empaquetado.tar.gz /carpeta/a/empaquetar/
+Descomprimir: tar -zxvf archivo.tar.gz
 
-================================================
-Descomprimir archivos 
+Archivos .tar.bz2:
+Descomprimir: tar -jxvf nombre.tar.bz2
 
-tar -zxvf nombre.tar.gz
-tar -jxvf nombre.tar.bz2
-unzip nombre.zip
-unrar x archivo.rar
-tar -Jxvf nombre.tar.xz ó tar -xvf nombre.tar.xz
+Archivos .tar:
+Empaquetar: tar -cvf paquete.tar /dir/a/comprimir/
+Desempaquetar: tar -xvf paquete.tar
+
+Archivos .gz:
+Comprimir: gzip -9 index.php
+Descomprimir: gzip -d index.php.gz
+
+Archivos .tar.xz
+Descomprimir: tar -Jxvf nombre.tar.xz ó tar -xvf nombre.tar.xz
+
+Archivos .zip:
+Comprimir: zip archivo.zip carpeta
+Descomprimir: unzip archivo.zip
+
+Archivos .rar
+Comprimir: rar a nombre.rar ficheros
+Descomprimir: unrar x archivo.rar
 
 ==================================================================================================================
 
@@ -1185,7 +1200,7 @@ update-alternatives --display javac
 update-alternatives --display jar
 update-alternatives --display jshell
 
--Actualizar las alternativas a java, javac, jar y jshell respectivamente:
+-Instalar y/o actualizar las alternativas a java, javac, jar y jshell respectivamente:
 
 sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/open-jdk-11/bin/java 1
 sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/open-jdk-11/bin/javac 1
