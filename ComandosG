@@ -1090,11 +1090,24 @@ groups kevin
 
 Invertir el significado de la busqueda
 
-grep -v regexp ficheros		ó	cat fichero | grep -v regex
+$ grep -v regexp ficheros		
+ó	
+$ cat fichero | grep -v regex
 
 Mostrar número de linea de la coincidencia 
 
-grep -n regexp ficheros
+$ grep -n regexp ficheros
+
+Mostar solo el archivo donde se encuentra la coincidencia
+
+$ grep -l "texto"
+
+Ejemplo, el siguiente comando busca la palabra mango en un directorio, con xargs toma cada nombre de los ficheros de salida que coincidieron y se los pasa uno a uno a sed para que lo reemplace con pera:
+
+grep -rl "mango" | xargs sed -i 's/mango/pera/g'
+
+
+
 
 ======================================================================================================================================================
 				Mostrar una cantidad de números de lineas de un fichero
@@ -1397,8 +1410,80 @@ ls | grep *.borrar$ | xargs rm
 OJO cabe aclarar que se intento sin el xargs pero no funciona.
 
 =====================================================================================================================================================  
+				Generar una llave .pem a partir de una llave .ppk 
+
+-Install PuttyTools
+
+apt-get install putty-tools
+
+-Generate a pem file form the ppk
+
+puttygen server.ppk -O private-openssh -o server.pem  
+
+==================================================================================================================
+					Run-level(Mejorar)
+
+RunLevel 	Significado
+
+S, s		Same as 1
+0		Shutdown system and turn power off
+1		Single user mode
+2		Multiple user, no NFS, only text login
+3		Multiple user, with NFS and network, only text login
+4		Not used
+5		Multiple user, with NFS and network, graphical login with X
+6		Reboot
+
+The current runlevel can be simply displayed with the runlevel command, as in:
+
+$ runlevel
+
+where the first character is the previous level; N means unknown.
+
+telinit can be used to change the runlevel of the system. For example, to go from runlevel 3 to runlevel 5, type:
+
+When the init process is started, the first thing it does is to read /etc/inittab. Historically, this file told init which scripts to run to bring the system up each runlevel, and was done with a series of lines, one for each runlevel:
+
+where:
+
+    id: a unique 1-4 character identification for the entry
+    runlevel(s): zero or more single character or digit identifiers which identify which runlevel the action will be taken for
+    action: describes the action to be taken
+    process: specifies the process to be executed.
+
+However, in more recent systems, the only un-commented line and the only thing being set in this file is the default runlevel with the line:
+
+This is the level to stop at when booting the system. However, if another value is specified on the kernel command line, init ignores the default. This is done by simply appending the right integer to the kernel command line. The default level is usually 5 for a full multi-user, networked graphical system, or 3 for a server without a graphical interface.
+
+systemd-based systems do not use /etc/inittab at all, and just contain a file with no uncommented content, so as to not break outdated scripts. However, some distributions still maintain the notion of runlevels, which are defined in terms of systemd targets, and so you can use commands like the telinit one described earlier.
+
+
+=====================================================================================================================================
+				Liberar memoria en cache
+
+Como root
+$ echo 3 > /proc/sys/vm/drop_caches
+=====================================================================================================================================
+				Crear un icono en las aplicaciones para el escritorio (.desktop)
+
+#Primer comando
+$ cat > ~/.local/share/applications/Nombre.desktop <<EOL
+
+
+>[Desktop Entry]
+>Encoding=UTF-8
+>Name=Nombre con que aparecera el icono en las aplicaciones
+>Exec=/opt/nombreapp/ejecutable
+>Icon=/opt/nombreapp/icono.png
+>Terminal=false
+>Type=Application
+>Categories=Network;WebBrowser;Favorite;
+>MimeType=text/html;text/xml;application/xhtml_xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp; X-Ayatana-Desktop-Shortcuts=NewWindow;NewIncognitos;
+>EOL
+
+
+
 ──────────────────
-ddsdds que lacreo este menor ────
 ──────────────────
 
 
