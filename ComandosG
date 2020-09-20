@@ -1484,7 +1484,9 @@ $ cat > ~/.local/share/applications/Nombre.desktop <<EOL
 ==============================================================================================================================
 				Comando para error de Virtual Box de 64Bits
 
-sudo apt-get install -y linux-headers-amd64 linux-headers-$(uname -r)
+$ sudo apt-get install -y linux-headers-amd64 linux-headers-$(uname -r)
+$ sudo /sbin/vboxconfig
+
 
 
 
