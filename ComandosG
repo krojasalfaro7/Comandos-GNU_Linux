@@ -1481,6 +1481,11 @@ $ cat > ~/.local/share/applications/Nombre.desktop <<EOL
 >MimeType=text/html;text/xml;application/xhtml_xml;x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/ftp; X-Ayatana-Desktop-Shortcuts=NewWindow;NewIncognitos;
 >EOL
 
+==============================================================================================================================
+				Comando para error de Virtual Box de 64Bits
+
+sudo apt-get install -y linux-headers-amd64 linux-headers-$(uname -r)
+
 
 
 ──────────────────
