@@ -1487,6 +1487,14 @@ $ cat > ~/.local/share/applications/Nombre.desktop <<EOL
 $ sudo apt-get install -y linux-headers-amd64 linux-headers-$(uname -r)
 $ sudo /sbin/vboxconfig
 
+=========================================================================================================================================
+				Sintaxis para ejecutar un comando largo con "sudo"
+
+$ sudo bash -c "comando"
+
+Por ejemplo:
+
+$ sudo bash -c "echo 'prueba' > texto.txt"
 
 
 
