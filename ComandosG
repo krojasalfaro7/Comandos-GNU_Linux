@@ -1487,10 +1487,6 @@ $ cat > ~/.local/share/applications/Nombre.desktop <<EOL
 $ sudo apt-get install -y linux-headers-amd64 linux-headers-$(uname -r)
 $ sudo /sbin/vboxconfig
 
-<<<<<<< HEAD
-=============================================================================================================================
-Error:  
-=======
 =========================================================================================================================================
 				Sintaxis para ejecutar un comando largo con "sudo"
 
@@ -1499,7 +1495,9 @@ $ sudo bash -c "comando"
 Por ejemplo:
 
 $ sudo bash -c "echo 'prueba' > texto.txt"
->>>>>>> 37d248ab72fc50561e31792b7b2b6f6607e4df0c
+
+=============================================================================================================================
+Error:  
 
 sudo: /etc/sudoers is owned by uid 1000, should be 0 sudo: no valid sudoers sources found, quitting sudo: unable to initialize policy plugin
 
