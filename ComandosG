@@ -1487,8 +1487,13 @@ $ cat > ~/.local/share/applications/Nombre.desktop <<EOL
 $ sudo apt-get install -y linux-headers-amd64 linux-headers-$(uname -r)
 $ sudo /sbin/vboxconfig
 
+=============================================================================================================================
+Error:  
 
+sudo: /etc/sudoers is owned by uid 1000, should be 0 sudo: no valid sudoers sources found, quitting sudo: unable to initialize policy plugin
 
+Solucion(Hacer como root):
+$pkexec chown root:root /etc/sudoers /etc/sudoers.d -R
 
 ──────────────────
 ──────────────────
